@@ -51,7 +51,7 @@ export default function ShopExplore() {
   const loadServices = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("http://localhost:5000/api/creative-services");
+      const res = await api.get("/creative-services");
       let servicesData = res.data || [];
       
       if (searchTerm) {

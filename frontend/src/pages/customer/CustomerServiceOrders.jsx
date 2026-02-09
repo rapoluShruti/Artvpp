@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import api from '../../api';
 
 const CustomerServiceOrders = () => {
   const navigate = useNavigate();
@@ -19,9 +20,8 @@ const CustomerServiceOrders = () => {
 
   const fetchOrders = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/creative-services/orders/customer/all', {
-        headers: { Authorization: `Bearer ${token}` }
-      });
+      const res = await api.get('/creative-services/orders/customer/all');
+
       setOrders(res.data || []);
     } catch (err) {
       console.error('Error fetching orders:', err);

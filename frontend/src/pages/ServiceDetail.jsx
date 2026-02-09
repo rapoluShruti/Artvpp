@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import api from '../api';
 
 const ServiceDetail = () => {
   const { service_id } = useParams();
@@ -21,11 +22,13 @@ const ServiceDetail = () => {
 
   const fetchService = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/creative-services/${service_id}`);
+      const res = await api.get(`/creative-services/${service_id}`);
+
       setService(res.data);
 
       if (res.data.artist_id) {
-        const artistRes = await axios.get(`http://localhost:5000/api/artists/${res.data.artist_id}`);
+        const artistRes = await api.get(`/artists/${res.data.artist_id}`);
+
         setArtist(artistRes.data);
       }
 
@@ -53,7 +56,8 @@ const ServiceDetail = () => {
 
     setOrdering(true);
     try {
-      await axios.post('http://localhost:5000/api/creative-services/orders/create', {
+     await api.post('/creative-services/orders/create', {
+
         service_id,
         tier_id: selectedTier,
         requirements
@@ -79,7 +83,8 @@ const ServiceDetail = () => {
 
     setOrdering(true);
     try {
-      await axios.post('http://localhost:5000/api/creative-services/preorders/create', {
+     await api.post('/creative-services/preorders/create', {
+
         service_id,
         tier_id: null,
         quantity: 1
@@ -110,7 +115,8 @@ const ServiceDetail = () => {
 
     setOrdering(true);
     try {
-      await axios.post('http://localhost:5000/api/creative-services/bookings/request', {
+    await api.post('/creative-services/bookings/request', {
+
         service_id,
         seats_booked: selectedSeats.length,
         seat_numbers: selectedSeats,

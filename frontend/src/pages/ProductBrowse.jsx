@@ -1,6 +1,6 @@
 // // import { useState, useEffect } from "react";
 // // import { useNavigate } from "react-router-dom";
-// // import api from "../api";
+// // import api from "../../api";
 
 // // export default function ProductBrowse() {
 // //   const navigate = useNavigate();
@@ -245,7 +245,7 @@
 // // }
 // import { useState, useEffect } from "react";
 // import { useNavigate } from "react-router-dom";
-// import api from "../api";
+// import api from "../../api";
 
 // export default function ProductBrowse() {
 

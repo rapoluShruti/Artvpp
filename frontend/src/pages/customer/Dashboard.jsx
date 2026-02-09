@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import api from '../../api'; 
+
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend
 } from 'recharts';
@@ -22,7 +24,8 @@ const CustomerDashboard = () => {
   const fetchOrders = async () => {
     try {
       const headers = { Authorization: `Bearer ${token}` };
-      const res = await axios.get('http://localhost:5000/api/orders', { headers });
+     const res = await api.get('/orders');
+
       setOrders(res.data || []);
     } catch (err) {
       console.error('Error fetching orders:', err.message);
